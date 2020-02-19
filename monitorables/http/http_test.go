@@ -31,8 +31,8 @@ func TestNewMonitorable(t *testing.T) {
 
 	// Test calls
 	mockRouter.AssertNumberOfCalls(t, "Group", 1)
-	mockRouterGroup.AssertNumberOfCalls(t, "GET", 3)
-	mockConfigManager.AssertNumberOfCalls(t, "RegisterTile", 3)
-	mockConfigManager.AssertNumberOfCalls(t, "EnableTile", 3)
+	mockRouterGroup.AssertNumberOfCalls(t, "GET", 4)
+	mockConfigManager.AssertNumberOfCalls(t, "RegisterTile", 4)
+	mockConfigManager.AssertNumberOfCalls(t, "EnableTile", 4)
 	mockConfigManager.AssertNumberOfCalls(t, "EnableDynamicTile", 0)
 }

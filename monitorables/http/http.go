@@ -33,6 +33,7 @@ func NewMonitorable(store *store.Store) *Monitorable {
 	store.UIConfigManager.RegisterTile(api.HTTPStatusTileType, monitorable.GetVariants(), uiConfig.MinimalVersion)
 	store.UIConfigManager.RegisterTile(api.HTTPRawTileType, monitorable.GetVariants(), uiConfig.MinimalVersion)
 	store.UIConfigManager.RegisterTile(api.HTTPFormattedTileType, monitorable.GetVariants(), uiConfig.MinimalVersion)
+	store.UIConfigManager.RegisterTile(api.HTTPProxyTileType, monitorable.GetVariants(), uiConfig.Version1001)
 
 	return monitorable
 }
@@ -61,6 +62,7 @@ func (m *Monitorable) Enable(variant coreModels.VariantName) {
 	routeStatus := routeGroup.GET("/status", delivery.GetHTTPStatus)
 	routeRaw := routeGroup.GET("/raw", delivery.GetHTTPRaw)
 	routeJSON := routeGroup.GET("/formatted", delivery.GetHTTPFormatted)
+	routeProxy := routeGroup.GET("/proxy", delivery.GetHTTPProxy)
 
 	// EnableTile data for config hydration
 	m.store.UIConfigManager.EnableTile(api.HTTPStatusTileType, variant,
@@ -69,4 +71,6 @@ func (m *Monitorable) Enable(variant coreModels.VariantName) {
 		&httpModels.HTTPRawParams{}, routeRaw.Path, conf.InitialMaxDelay)
 	m.store.UIConfigManager.EnableTile(api.HTTPFormattedTileType, variant,
 		&httpModels.HTTPFormattedParams{}, routeJSON.Path, conf.InitialMaxDelay)
+	m.store.UIConfigManager.EnableTile(api.HTTPProxyTileType, variant,
+		&httpModels.HTTPProxyParams{}, routeProxy.Path, conf.InitialMaxDelay)
 }

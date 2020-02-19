@@ -16,10 +16,11 @@ import (
 
 // Versions
 const (
-	CurrentVersion = Version1000
+	CurrentVersion = Version1001
 	MinimalVersion = Version1000
 
 	Version1000 models.RawVersion = "1.0" // Initial version
+	Version1001 models.RawVersion = "1.1" // HTTP proxy
 )
 
 const (

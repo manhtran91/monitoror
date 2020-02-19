@@ -28,6 +28,18 @@ const (
 	WarningStatus        TileStatus = "WARNING"
 )
 
+var AvailableTileStatuses = map[TileStatus]bool{
+	ActionRequiredStatus: true,
+	CanceledStatus:       true,
+	DisabledStatus:       true,
+	FailedStatus:         true,
+	QueuedStatus:         true,
+	RunningStatus:        true,
+	SuccessStatus:        true,
+	UnknownStatus:        true,
+	WarningStatus:        true,
+}
+
 func NewTile(t TileType) *Tile {
 	return &Tile{Type: t}
 }

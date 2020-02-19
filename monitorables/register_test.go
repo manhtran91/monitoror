@@ -12,6 +12,6 @@ func TestManager_RegisterMonitorables(t *testing.T) {
 	manager := &Manager{store: s}
 	manager.RegisterMonitorables()
 
-	tileTypeCount := 15
+	tileTypeCount := 16
 	mockConfigManager.AssertNumberOfCalls(t, "RegisterTile", tileTypeCount)
 }

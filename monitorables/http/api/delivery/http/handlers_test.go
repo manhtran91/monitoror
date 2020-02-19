@@ -41,6 +41,9 @@ func Test_httpHttpDelivery_GetHttp_MissingParams(t *testing.T) {
 		func(handler *HTTPDelivery) func(ctx echo.Context) error {
 			return handler.GetHTTPFormatted
 		},
+		func(handler *HTTPDelivery) func(ctx echo.Context) error {
+			return handler.GetHTTPProxy
+		},
 	}
 
 	// tests
@@ -77,6 +80,12 @@ func Test_httpHttpDelivery_GetHttp_Error(t *testing.T) {
 			mockFuncName: "HTTPFormatted",
 			handlerFunc: func(handler *HTTPDelivery) func(ctx echo.Context) error {
 				return handler.GetHTTPFormatted
+			},
+		},
+		{
+			mockFuncName: "HTTPProxy",
+			handlerFunc: func(handler *HTTPDelivery) func(ctx echo.Context) error {
+				return handler.GetHTTPProxy
 			},
 		},
 	}
@@ -127,6 +136,13 @@ func Test_httpHttpDelivery_GetHttp(t *testing.T) {
 			mockFuncName: "HTTPFormatted",
 			handlerFunc: func(handler *HTTPDelivery) func(ctx echo.Context) error {
 				return handler.GetHTTPFormatted
+			},
+		},
+		{
+			tileType:     api.HTTPProxyTileType,
+			mockFuncName: "HTTPProxy",
+			handlerFunc: func(handler *HTTPDelivery) func(ctx echo.Context) error {
+				return handler.GetHTTPProxy
 			},
 		},
 	}

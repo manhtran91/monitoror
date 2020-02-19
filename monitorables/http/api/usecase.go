@@ -9,6 +9,7 @@ const (
 	HTTPStatusTileType    coreModels.TileType = "HTTP-STATUS"
 	HTTPRawTileType       coreModels.TileType = "HTTP-RAW"
 	HTTPFormattedTileType coreModels.TileType = "HTTP-FORMATTED"
+	HTTPProxyTileType     coreModels.TileType = "HTTP-PROXY"
 )
 
 type (
@@ -16,5 +17,6 @@ type (
 		HTTPStatus(params *models.HTTPStatusParams) (*coreModels.Tile, error)
 		HTTPRaw(params *models.HTTPRawParams) (*coreModels.Tile, error)
 		HTTPFormatted(params *models.HTTPFormattedParams) (*coreModels.Tile, error)
+		HTTPProxy(params *models.HTTPProxyParams) (*coreModels.Tile, error)
 	}
 )

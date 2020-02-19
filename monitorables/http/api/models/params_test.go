@@ -16,27 +16,30 @@ func TestHTTPParams_IsValid(t *testing.T) {
 		expected bool
 	}{
 		{&HTTPStatusParams{}, false},
-		{&HTTPStatusParams{URL: "toto"}, true},
-		{&HTTPStatusParams{URL: "toto", StatusCodeMin: pointer.ToInt(300), StatusCodeMax: pointer.ToInt(299)}, false},
-		{&HTTPStatusParams{URL: "toto", StatusCodeMin: pointer.ToInt(299), StatusCodeMax: pointer.ToInt(300)}, true},
+		{&HTTPStatusParams{URL: "url"}, true},
+		{&HTTPStatusParams{URL: "url", StatusCodeMin: pointer.ToInt(300), StatusCodeMax: pointer.ToInt(299)}, false},
+		{&HTTPStatusParams{URL: "url", StatusCodeMin: pointer.ToInt(299), StatusCodeMax: pointer.ToInt(300)}, true},
 
 		{&HTTPRawParams{}, false},
-		{&HTTPRawParams{URL: "toto"}, true},
-		{&HTTPRawParams{URL: "toto", StatusCodeMin: pointer.ToInt(300), StatusCodeMax: pointer.ToInt(299)}, false},
-		{&HTTPRawParams{URL: "toto", StatusCodeMin: pointer.ToInt(299), StatusCodeMax: pointer.ToInt(300)}, true},
-		{&HTTPRawParams{URL: "toto", Regex: "("}, false},
-		{&HTTPRawParams{URL: "toto", Regex: "(.*)"}, true},
+		{&HTTPRawParams{URL: "url"}, true},
+		{&HTTPRawParams{URL: "url", StatusCodeMin: pointer.ToInt(300), StatusCodeMax: pointer.ToInt(299)}, false},
+		{&HTTPRawParams{URL: "url", StatusCodeMin: pointer.ToInt(299), StatusCodeMax: pointer.ToInt(300)}, true},
+		{&HTTPRawParams{URL: "url", Regex: "("}, false},
+		{&HTTPRawParams{URL: "url", Regex: "(.*)"}, true},
 
 		{&HTTPFormattedParams{}, false},
-		{&HTTPFormattedParams{URL: "toto"}, false},
-		{&HTTPFormattedParams{URL: "toto", Format: "unknown"}, false},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: ""}, false},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: "."}, false},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: "key"}, true},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: "key", StatusCodeMin: pointer.ToInt(300), StatusCodeMax: pointer.ToInt(299)}, false},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: "key", StatusCodeMin: pointer.ToInt(299), StatusCodeMax: pointer.ToInt(300)}, true},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: "key", Regex: "("}, false},
-		{&HTTPFormattedParams{URL: "toto", Format: "JSON", Key: "key", Regex: "(.*)"}, true},
+		{&HTTPFormattedParams{URL: "url"}, false},
+		{&HTTPFormattedParams{URL: "url", Format: "unknown"}, false},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: ""}, false},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: "."}, false},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: "key"}, true},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: "key", StatusCodeMin: pointer.ToInt(300), StatusCodeMax: pointer.ToInt(299)}, false},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: "key", StatusCodeMin: pointer.ToInt(299), StatusCodeMax: pointer.ToInt(300)}, true},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: "key", Regex: "("}, false},
+		{&HTTPFormattedParams{URL: "url", Format: "JSON", Key: "key", Regex: "(.*)"}, true},
+
+		{&HTTPProxyParams{URL: ""}, false},
+		{&HTTPProxyParams{URL: "url"}, true},
 	} {
 		assert.Equal(t, testcase.expected, testcase.params.IsValid())
 	}
